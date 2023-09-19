@@ -1,0 +1,59 @@
+# add URL
+curl -s "http://localhost:8080/JSON/core/action/accessUrl/?apikey=12345&url=https://www.webscantest.com&followRedirects=false" | jq .
+
+# list all sites
+curl -s "http://localhost:8080/JSON/core/view/sites/?apikey=12345" | jq .
+
+# list all hosts
+curl -s "http://localhost:8080/JSON/core/view/hosts/?apikey=12345" | jq .
+
+# list all httpSession sites
+$ curl -s "http://localhost:8080/JSON/httpSessions/view/sites/?apikey=12345" | jq .
+
+# create new httpSession
+$ curl -s "http://localhost:8080/JSON/httpSessions/action/createEmptySession/?apikey=12345&site=www.webscantest.com:443&session=session1" | jq .
+
+# show active httpSession
+$ curl -s "http://localhost:8080/JSON/httpSessions/view/activeSession/?apikey=12345&site=www.webscantest.com:443" | jq .
+
+# start spider scan
+$ curl -s "http://localhost:8080/JSON/spider/action/scan/?apikey=12345&zapapiformat=JSON&formMethod=GET&url=https://www.webscantest.com"
+
+# show spider scan status
+$ curl -s "http://localhost:8080/JSON/spider/view/status/?apikey=12345" | jq .
+
+# list all context
+$ curl -s "http://localhost:8080/JSON/context/view/contextList/?apikey=12345" | jq .
+
+# create context
+$ curl -s "http://localhost:8080/JSON/context/action/newContext/?apikey=12345&contextName=Default+Context" | jq .
+
+# show specific context
+$ curl -s "http://localhost:8080/JSON/context/view/context/?apikey=12345&contextName=Default+Context" | jq .
+
+# add regex into includeInContext
+$ curl -s "http://localhost:8080/JSON/context/action/includeInContext/?apikey=12345&contextName=Default+Context&ex=https://www.webscantest.com.*" | jq .
+
+# list all includeRegexs
+$ curl -s "http://localhost:8080/JSON/context/view/includeRegexs/?apikey=12345&contextName=Default+Context" | jq .
+
+# start active scan
+$ curl -s "http://localhost:8080/JSON/ascan/action/scan/?apikey=12345&zapapiformat=JSON&formMethod=GET&url=https://www.webscantest.com&recurse=&inScopeOnly=false&scanPolicyName=&method=&postData=&contextId="
+
+# show active scan status
+$ curl -s "http://localhost:8080/JSON/ascan/view/status/?apikey=12345" | jq .
+
+# list alert counts by url
+$ curl -s "http://localhost:8080/JSON/alert/view/alertCountsByRisk/?apikey=12345&url=https://www.webscantest.com&recurse=True" | jq .
+
+# list alerts by risk
+$ curl -s "http://localhost:8080/JSON/alert/view/alertsByRisk/?apikey=12345&url=https://www.webscantest.com&recurse=True" | jq .
+
+# show json report
+$ curl -s "http://localhost:8080/OTHER/core/other/jsonreport/?apikey=12345" | jq .
+
+# list all alerts
+$ curl -s "http://localhost:8080/JSON/core/view/alerts/?apikey=12345" | jq .
+
+# shutdown
+$ curl -s "http://localhost:8080/JSON/core/action/shutdown/?apikey=12345"
